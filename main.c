@@ -2,57 +2,50 @@
 #include <stdlib.h>
 
 /*
-Desenvolva um programa que faça o Cálculo da Massa Corporal (IMC). O usuário deve
-entrar com o peso e a altura. E classificar o resultado de acordo com a tabela abaixo:
-–Menos do que 18,5: Abaixo do peso;
-–Entre 18,5 e 24,9: Peso normal;
-–Entre 25 e 29,9: Sobrepeso;
-–Entre 30 e 34,9: Obesidade grau 1;
-–Entre 35 e 39,9: Obesidade grau 2;
-–Mais do que 40: Obesidade grau 3;
+Faça um programa que implemente uma lista de prioridades. O programa receberá uma
+lista de valores dada pelo usuário, os valores podem ser em ordem aleatória. O programa
+deve armazenar os valores em um vetor decrescente.
 */
+
+void DecrescVetor(int vet[], int tam) {
+
+    // ordena o vetor
+    for(int i = 0; i < tam; i++) {
+        for(int j = i+1; j < tam; j++) {
+            if(vet[i] < vet[j]) {
+                // troca de valores
+                int aux = vet[j];
+                vet[j] = vet[i];
+                vet[i] = aux;
+            }
+        }
+    }
+}
 
 int main()
 {
-    // variável de peso
-    float peso = 0;
-    // variável de altura
-    float altura = 0;
+    // variável do tamanho do vetor
+    int tam = 0;
 
-    // leitura da variável peso
-    printf("Informe o peso: ");
-    scanf("%f", &peso);
+    // leitura do valor do tamanho
+    printf("Informe o tamanho do vetor: ");
+    scanf("%d", &tam);
 
-    // leitura da variável altura
-    printf("Informe altura: ");
-    scanf("%f", &altura);
+    // variável do vetor de valores
+    int vet[tam];
 
-    // variável do resultado do cálculo de IMC
-    float resultado = peso / (altura * altura);
-
-    // imprime a classificação do IMC de acordo com a variável resultado
-    if(resultado < 18.5) {
-        printf("\nAbaixo do peso.");
+    // leitura dos valores do vetor
+    for(int i = 0; i < tam; i++) {
+        printf("Informe o número %d: ", i+1);
+        scanf("%d", &vet[i]);
     }
 
-    else if(resultado >= 18.5 && resultado <= 24.9) {
-        printf("\nPeso normal.");
-    }
+    // organiza o vetor em ordem decrescente
+    DecrescVetor(vet, tam);
 
-    else if(resultado >= 25 && resultado <= 29.9) {
-        printf("\nSobrepeso.");
-    }
-
-    else if(resultado >= 30 && resultado <= 34.9) {
-        printf("\nObesidade grau 1.");
-    }
-
-    else if(resultado >= 35 && resultado <= 39.9) {
-        printf("\nObesidade grau 2.");
-    }
-
-    else if(resultado >= 40) {
-        printf("\nObesidade grau 3.");
+    // imprime o vetor
+    for(int k = 0; k < tam; k++) {
+        printf("%d, ", vet[k]);
     }
 
     return 0;
